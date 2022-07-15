@@ -15,6 +15,7 @@ func Drivers() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/registro", middlew.CheckBD(routers.Register)).Methods("POST")
+	router.HandleFunc("/login", middlew.CheckBD(routers.Login)).Methods("POST")
 
 
 
