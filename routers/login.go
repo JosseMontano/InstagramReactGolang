@@ -2,6 +2,7 @@ package routers
 import (
 	"encoding/json"
 	"net/http"
+	"time"
 	"github.com/JosseMontano/InstagramReactGolang/models"
 	"github.com/JosseMontano/InstagramReactGolang/bd"
 	"github.com/JosseMontano/InstagramReactGolang/jwt"
@@ -19,7 +20,7 @@ func Login(w http.ResponseWriter, r *http.Request){
 		return
 	}
 	doc, exits :=bd.IntentLogin(t.Gmail, t.Password)
-	if exits == false{
+	if !exits{
 		http.Error(w, "Usuario y/o contraseña invalidos " + err.Error(), 400)
 		return
 	}
@@ -35,11 +36,11 @@ func Login(w http.ResponseWriter, r *http.Request){
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(resp)
 
-	/*expirationTime:= time.Now().Add(24 * time.Hour)
+    expirationTime:= time.Now().Add(24 * time.Hour)
 	http.SetCookie(w, &http.Cookie{
 		Name:"token",
 		Value: jwtKey,
 		Expires: expirationTime,
-	})*/
+	})
 
 }
