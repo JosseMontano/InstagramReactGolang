@@ -16,6 +16,7 @@ func Drivers() {
 
 	router.HandleFunc("/registro", middlew.CheckBD(routers.Register)).Methods("POST")
 	router.HandleFunc("/login", middlew.CheckBD(routers.Login)).Methods("POST")
+	router.HandleFunc("/verPerfil", middlew.CheckBD(middlew.ValidoJWT(routers.VerPerfil))).Methods("POST")
 
 
 

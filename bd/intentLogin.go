@@ -7,7 +7,7 @@ import (
 
 func IntentLogin(gmail string, password string) (models.User, bool) {
 	use, find, _ := CheckExitsUser(gmail)
-	if find == false {
+	if !find {
 		return use, false
 	}
 	passBytes := []byte(password)
